@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Question</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8e1e1;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .gif {
+            width: 100%;
+            max-width: 600px;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        #question {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #d63384;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .hehe{
+          font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #d63384;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .tanong{
+          font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #d63384;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 120px;
+            margin-top: 80px;
+        }
+
+        button {
+            font-size: 1.5em;
+            padding: 15px 30px ;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 20px;
+            border: none;
+            font-weight: bold;
+           
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        #noButton {
+            background-color: #ff6f61;
+            color: white;
+        }
+
+        #yesButton {
+            background-color: #ff4081;
+            color: white;
+        }
+
+        /* Popup Styling */
+        .popup, .date {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 30px;
+            background-color: white;
+            border: 3px solid #ff4081;
+            border-radius: 15px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .popup img {
+            width: 600px;
+        }
+
+        .surprise {
+            background-color: #ff4081;
+            color: white;
+            border-radius: 10px;
+            padding: 10px 20px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        /* Fade In Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        
+        .date {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 25px;
+    width: 90%;
+    max-width: 420px;
+    background: #fff;
+    border: 3px solid #ff4081;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.date::before {
+    content: "💖 Special Date Details 💖";
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ff4081;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.date p {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #d63384;
+    margin: 10px 0;
+    background: rgba(255, 192, 203, 0.2);
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.date button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #ff4081;
+    color: white;
+    font-size: 1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.date button:hover {
+    background-color: #d63384;
+    transform: scale(1.05);
+}
+
+    </style>
+</head>
+<body>
+    <p id="title" class="tanong">Will you be my Valentine? 💕</p>
+    <img id="gif" class="gif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTExYXU3cnkwejUxbXN6b3UweHdydTBsdXVsYWRocjBsczl1ZDVoMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2aw9gwZlltbdX92b4w/giphy.gif" alt="Cute GIF">
+    
+    <div class="container">
+        <div id="question">🤔</div>
+        <div class="buttons">
+            <button id="noButton" onclick="enlargeYesButton()">No 😭</button>
+            <button id="yesButton" onclick="showPopup()">Yes 😍</button>
+        </div>
+    </div>
+
+    <!-- Popup when clicking Yes -->
+    <div id="popup" class="popup">
+        <img src="https://media3.giphy.com/media/FDbIUZLwbCUS4786z3/giphy.gif">
+        <p class="hehe">I knew you loved me! 💖</p>
+        <button class="surprise" onclick="showSurprise()">Click here for a surprise 🎁</button>
+    </div>
+
+    <!-- Hidden surprise message -->
+    <div id="date" class="date">
+      <div>
+        <p>CALL TIME : February 14, 2025 - 6:30 PM </p>
+        <p>WHAT : VALENTINES DATE </p>
+        <p>WHERE : Loghouse Cafe</p>
+        <p>WHO : MARIA & CARLO </p>
+        <p> Tell me if you want any adjustments	💖  </p>
+      </div>
+    </div>
+
+    <script>
+        let questionArray = [
+            "Why no? ",
+            "Are you really sure? ",
+            "Just click YES...... ",
+            "Are you absolutely sure? ",
+            "Please! Please? "
+        ];
+
+        let gifArray = [
+            "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdndzaGd2cnkzanNmZnlyODExM213OGJjYjMxamJhdDBodnlyanRlYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xUOxfd9h4zALTO4G1W/giphy.gif",
+            "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTRrbGZmMTRvdjB3aXJrendybmo2ZDAzbzY1ZzhwM2J1bzB6cm5kNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OPU6wzx8JrHna/giphy.gif",
+            "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzExZmtsaXdvMGVzbHVudGM5aGhpanVodTR2bTVmNXR5aHU3Nnc3NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KkklFx4wVfw5Ey9FTe/giphy.gif",
+            "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExd21sN2xjcG0xaWJ2cDZ6d2F2dXhnOWR1NzNhNXJ4ems3dmdqcnM4OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fHATu6Ryb8EtvZZgfZ/giphy.gif",
+            "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExejVhaXpwcmVsb3JiZWlldGVnYzdxbTJ5N251YjVtOTdqZWt0cGJ6YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/P00UJ92KxwMmCPANJC/giphy.gif"
+        ];
+
+
+        let questionIndex = 0;
+        let yesButtonScale = 1;
+
+        function enlargeYesButton() {
+            const yesButton = document.getElementById('yesButton');
+            const question = document.getElementById('question');
+            const gif = document.getElementById('gif');
+            const noButton = document.getElementById('noButton');
+
+            // Increase size of "Yes" button
+            if (yesButtonScale < 3) {
+                yesButtonScale += 0.2;
+                yesButton.style.transform = `scale(${yesButtonScale})`;
+            } else {
+                noButton.innerText = "Error 401";
+                noButton.disabled = true;
+            }
+
+            // Change the question text and GIF
+            questionIndex = (questionIndex + 1) % questionArray.length;
+            question.style.opacity = 0;
+            gif.style.opacity = 0;
+
+            setTimeout(() => {
+                question.innerText = questionArray[questionIndex];
+                gif.src = gifArray[questionIndex];
+                question.style.opacity = 1;
+                gif.style.opacity = 1;
+            }, 300);
+        }
+
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function showSurprise() {
+            document.getElementById('date').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
