@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Surprise</title>
+    <style>
+        /* Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap');
+
+        /* Background Animation */
+        body {
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Floating Hearts */
+        .background-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(-45deg);
+            opacity: 0.6;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: red;
+            border-radius: 50%;
+        }
+
+        .heart::before { top: -50%; left: 0; }
+        .heart::after { left: 50%; top: 0; }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(-45deg) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(-45deg) scale(1.2); opacity: 0; }
+        }
+
+        /* Valentine Message */
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #ff2e63;
+            font-size: 3rem;
+            text-shadow: 3px 3px 10px rgba(255, 0, 75, 0.4);
+        }
+
+        p {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        /* Envelope Container */
+        .container {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Envelope */
+        .envelope {
+            width: 350px;
+            height: 250px;
+            background: linear-gradient(145deg, #ff3b6f, #ff1e56);
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 5px 5px 20px rgba(255, 0, 75, 0.5);
+            transition: transform 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Envelope Flap */
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(145deg, #ff758f, #ff4d6d);
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            transition: transform 0.4s ease-in-out;
+        }
+
+        /* Note Paper */
+        .note {
+            position: absolute;
+            width: 300px;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #d63384;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease-in-out;
+        }
+
+        /* Button Inside Note */
+        .note button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: #ff2e63;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .note button:hover {
+            background: #e6004c;
+        }
+
+        /* Envelope Open Animation */
+        .container.open .note {
+            top: -140px;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .container.open .envelope {
+            transform: translateY(30px) rotateX(30deg);
+        }
+
+        .container.open .envelope::before {
+            transform: translateY(-100px) rotateX(120deg);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Happy Valentine's Day, My Love! 💖</h1>
+    <p>Click the envelope to reveal a special message!</p>
+
+    <div class="container" onclick="openEnvelope()">
+        <div class="note" id="note">
+            Valentine is almost there! 💌  
+            <br><br>
+            <a href="home.html">
+                <button>→</button>
+            </a>
+        </div>
+        <div class="envelope">
+            <div class="heart">💌</div>
+        </div>
+    </div>
+
+    <!-- Background Floating Hearts -->
+    <div class="background-hearts" id="backgroundHearts"></div>
+
+    <script>
+        function openEnvelope() {
+            const container = document.querySelector(".container");
+            if (!container.classList.contains("open")) {
+                container.classList.add("open");
+            }
+        }
+
+        // Floating Heart Background Animation
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 5 + 3 + "s";
+            document.getElementById("backgroundHearts").appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        setInterval(createHeart, 500);
+    </script>
+
+</body>
+</html>
